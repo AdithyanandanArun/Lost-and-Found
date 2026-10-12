@@ -21,15 +21,15 @@ function updateUserInfo() {
   const nameEl   = document.getElementById("userName");
   const emailEl  = document.getElementById("userEmail");
   const avatarEl = document.getElementById("userAvatar");
-  if (nameEl)   nameEl.textContent  = currentUser.displayName || "User";
+  if (nameEl)   nameEl.textContent  = currentUser.user_metadata?.display_name || "User";
   if (emailEl)  emailEl.textContent = currentUser.email;
-  if (avatarEl) avatarEl.textContent = (currentUser.displayName || "U")[0].toUpperCase();
+  if (avatarEl) avatarEl.textContent = (currentUser.user_metadata?.display_name || "U")[0].toUpperCase();
 }
 
 async function loadBothTabs() {
   const [lost, found] = await Promise.all([
-    fetchPosts("lost"),
-    fetchPosts("found"),
+    fetchPosts("lost", { userId: currentUser.id }),
+    fetchPosts("found", { userId: currentUser.id }),
   ]);
   userPosts.lost  = lost;
   userPosts.found = found;
