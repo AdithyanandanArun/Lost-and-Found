@@ -81,7 +81,7 @@ function renderTab(type) {
 
 function dashCard(item, type) {
   const placeholder = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.title)}&background=0d1b2e&color=3b82f6&size=400`;
-  const isOwner = currentUser && item.userId === currentUser.uid;
+  const isOwner = currentUser && item.userId === currentUser.id;
   const actions = isOwner ? `
         <div class="flex gap-2">
           <a href="post.html?type=${type}&id=${item.id}&edit=1"
